@@ -3,11 +3,12 @@
 ## Getting and Cleaning Data
 ## Course Project
 
-# 1. Merge the training and the test sets to create one data set.
+# 4. Appropriately labels the data set with descriptive variable names. 
 features <- read.table("./data/features.txt", na.strings ="", stringsAsFactors = F)
 colnames(features) <- c("id", "name")
 columnNames <- features$name
 
+# 1. Merge the training and the test sets to create one data set.
 train <- read.table("./data/train/subject_train.txt", na.strings = "", stringsAsFactors = F)
 colnames(train) = ("subject")
 Y_train <- read.table("./data/train/Y_train.txt", na.strings = "", stringsAsFactors = F)
@@ -28,7 +29,8 @@ test <- cbind(test, X_test)
 
 all.data <- rbind(train, test)
 
-# 2. Extract only the measurements on the mean and standard deviation for each measurement. 
+# 2. Extract only the measurements on the mean and standard deviation for each 
+#    measurement. 
 is.mean.or.std <- grepl("-(mean|std)\\(\\)", columnNames, ignore.case = TRUE)
 all.data <- all.data[, c(TRUE, TRUE, is.mean.or.std)]
 
@@ -42,24 +44,6 @@ MapActivityNumberToActivityDescription <- function(index) {
 all.data$activity <- sapply(all.data$activity, MapActivityNumberToActivityDescription)
 all.data$activity <- as.factor(all.data$activity)
 
-# 4. Appropriately labels the data set with descriptive variable names. 
-# 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
-getRidOfBadChars <- function(s) {
-        s <- gsub("-", "", s)
-        s <- gsub("\\(", "", s)
-        s <- gsub(")", "", s)
-        s <- gsub(",", "", s)
-        
-        return(s)
-}
-
-columnNames <- lapply(columnNames, getRidOfBadChars)
-
-addSuffix <- function(str, suffix) {
-        return(paste(str, suffix, sep="_"))
-}
-
-means <- aggregate(. ~ subject.id, data = all.data, FUN = mean)
-meansColNames <- colnames(means)[2:length(colnames(means))]
-meansColNames <- c("subject.id", meansColNames)
-colnames(means) <- meansColNames
+# 5. Create a second, independent tidy data set with the average of each 
+#    variable for each activity and each subject. 
+tidy.data <- aggregate(. ~ subject + activity, data = all.data, FUN = mean)
