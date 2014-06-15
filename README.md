@@ -21,3 +21,5 @@ To run the project, simply run the R command below from the root directory of th
 containing this README file).
 
     source("./src/run_analysis.R")  
+
+The original data will be downloaded and deleted after the program is run.  It will take about a minute to run.  The output file "TidyData.txt" will be in the project root directory.
