@@ -23,7 +23,7 @@ test <- cbind(test, X_test)
 all.data <- rbind(train, test)
 
 # 2. Extract only the measurements on the mean and standard deviation for each measurement. 
-is.mean.or.std <- grepl("-(mean|std)\\(\\)-", columnNames, ignore.case = TRUE)
+is.mean.or.std <- grepl("-(mean|std)\\(\\)", columnNames, ignore.case = TRUE)
 all.data <- all.data[, c(TRUE, is.mean.or.std)]
 
 # 3. Uses descriptive activity names to name the activities in the data set
