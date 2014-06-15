@@ -1,3 +1,5 @@
 data/
 .Rhistory
 .gitignore~
+.DS_Store
+TidyData.txt
