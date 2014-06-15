@@ -21,7 +21,6 @@ the subject was engaged in when the measurements were taken.  The other fields
 have the same labels, meanings, and units as they do in the original study.
 
 Fields
-
 * subject
 * activity
 * tBodyAcc-mean()-X
