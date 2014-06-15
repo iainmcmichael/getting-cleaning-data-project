@@ -3,7 +3,7 @@
 ## Getting and Cleaning Data
 ## Course Project
 
-# 4. Appropriately labels the data set with descriptive variable names. 
+# 4. Appropriately label the data set with descriptive variable names. 
 features <- read.table("./data/features.txt", na.strings ="", stringsAsFactors = F)
 colnames(features) <- c("id", "name")
 columnNames <- features$name
