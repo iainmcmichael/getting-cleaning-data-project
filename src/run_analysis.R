@@ -32,7 +32,16 @@ all.data <- rbind(train, test)
 is.mean.or.std <- grepl("-(mean|std)\\(\\)", columnNames, ignore.case = TRUE)
 all.data <- all.data[, c(TRUE, TRUE, is.mean.or.std)]
 
-# 3. Uses descriptive activity names to name the activities in the data set
+# 3. Use descriptive activity names to name the activities in the data set
+MapActivityNumberToActivityDescription <- function(index) {
+        descriptions <- c("walking", "walking upstairs", "walking downstairs", "sitting", "standing", "playing")
+        
+        return(descriptions[index])
+}
+
+all.data$activity <- sapply(all.data$activity, MapActivityNumberToActivityDescription)
+all.data$activity <- as.factor(all.data$activity)
+
 # 4. Appropriately labels the data set with descriptive variable names. 
 # 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 getRidOfBadChars <- function(s) {
