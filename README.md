@@ -5,7 +5,7 @@ The purpose of this project is to demonstrate my ability to collect, work with, 
 
 We start with the "Human Activity Recognition Using Smartphones Dataset", Version 1.0, data of Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.  
 
-We have created an R script called run_analysis.R that does the following.
+We have created an R script called [run_analysis.R](https://github.com/paul-reiners/getting-cleaning-data-project/blob/master/src/run_analysis.R) that does the following.
 
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
